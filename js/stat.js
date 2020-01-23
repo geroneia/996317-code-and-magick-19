@@ -7,8 +7,8 @@ var CLOUD_Y = 10;
 var GAP = 10;
 var FONT_GAP = 15;
 var TEXT_WIDTH = 50;
-var BAR_HEIGHT = 40;
-var barWidth = 150;
+var BAR_WIDTH = 40;
+var barHeight = 150;
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -45,33 +45,32 @@ window.renderStatistics = function (ctx, names, times) {
 
   // Сообщение о победе разбивается на строки в месте переноса (тут нужна функция, но я не знаю, как правильно ее написать)
   ctx.fillStyle = '#000';
-  ctx.font = '16px Tahoma';
+  ctx.font = '16px PT Mono';
   ctx.textBaseline = 'hanging';
   var message = 'Ура вы победили! \nСписок результатов:';
   var lineheight = 20;
   var lines = message.split('\n');
   for (var i = 0; i < lines.length; i++) {
-    ctx.fillText(lines[i], CLOUD_X + GAP, CLOUD_Y + GAP + (i * lineheight));
+    ctx.fillText(lines[i], CLOUD_X + GAP * 2, CLOUD_Y + GAP * 2 + (i * lineheight));
   }
 
   var maxTime = getMaxElement(times);
 
-  // Поворачиваются столбики гистограммы
-  ctx.rotate(270 * Math.PI / 180);
-  ctx.translate(-400, 100);
   for (var j = 0; j < names.length; j++) {
     ctx.fillStyle = 'black';
-    ctx.fillText(names[j], CLOUD_X + GAP + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP);
-    // if (names[i] = 'Вы') {
-    //   ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    //   console.log('Красный!!');
-    // } else {
-    //   ctx.fillStyle = getRandomColor();
-    // };
+    ctx.fillText(names[j], CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP);
 
-    ctx.fillStyle = getRandomColor();
+    // Находит текущего игрока и отечает красным
+    if (names[j] === 'Вы') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else {
+      ctx.fillStyle = getRandomColor();
+    };
+    // Рисует столбики диаграммы
+    ctx.fillRect(CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[j]) / maxTime, BAR_WIDTH, (barHeight * times[j]) / maxTime);
 
-    ctx.fillRect(CLOUD_X + GAP + FONT_GAP, CLOUD_Y + GAP + (GAP * 5 + BAR_HEIGHT) * j, (barWidth * times[j]) / maxTime, BAR_HEIGHT);
-    // ctx.fillText(times[i], 0, 0);
+    // Добавляет статистику в цифрах
+    ctx.fillStyle = '#000';
+    ctx.fillText(Math.round(times[j]), CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[j]) / maxTime - FONT_GAP)
   }
 };
