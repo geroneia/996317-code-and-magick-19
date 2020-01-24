@@ -65,12 +65,12 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       ctx.fillStyle = getRandomColor();
-    };
+    }
     // Рисует столбики диаграммы
     ctx.fillRect(CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[j]) / maxTime, BAR_WIDTH, (barHeight * times[j]) / maxTime);
 
     // Добавляет статистику в цифрах
     ctx.fillStyle = '#000';
-    ctx.fillText(Math.round(times[j]), CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[j]) / maxTime - FONT_GAP)
+    ctx.fillText(Math.round(times[j]), CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[j]) / maxTime - FONT_GAP);
   }
 };
