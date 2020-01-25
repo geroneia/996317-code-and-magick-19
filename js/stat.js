@@ -8,7 +8,12 @@ var GAP = 10;
 var FONT_GAP = 15;
 var TEXT_WIDTH = 50;
 var BAR_WIDTH = 40;
-var barHeight = 150;
+var BAR_HEIGHT = 150;
+var LINE_HEIGHT = 20;
+var LEFT_MARGIN = GAP * 4;
+var TOP_MARGIN = GAP * 2;
+var DISTANCE_BETWEEN_COLUMNS = GAP * 5;
+var MESSAGE = 'Ура вы победили! \nСписок результатов:';
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -37,7 +42,6 @@ var getRandomColor = function () {
   return someBlue;
 };
 
-
 window.renderStatistics = function (ctx, names, times) {
 
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
@@ -47,18 +51,16 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
   ctx.textBaseline = 'hanging';
-  var message = 'Ура вы победили! \nСписок результатов:';
-  var lineheight = 20;
-  var lines = message.split('\n');
+  var lines = MESSAGE.split('\n');
   for (var i = 0; i < lines.length; i++) {
-    ctx.fillText(lines[i], CLOUD_X + GAP * 2, CLOUD_Y + GAP * 2 + (i * lineheight));
+    ctx.fillText(lines[i], CLOUD_X + LEFT_MARGIN, CLOUD_Y + TOP_MARGIN + (i * LINE_HEIGHT));
   }
 
   var maxTime = getMaxElement(times);
 
   for (var j = 0; j < names.length; j++) {
     ctx.fillStyle = 'black';
-    ctx.fillText(names[j], CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP);
+    ctx.fillText(names[j], CLOUD_X + LEFT_MARGIN + (TEXT_WIDTH + DISTANCE_BETWEEN_COLUMNS) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP);
 
     // Находит текущего игрока и отечает красным
     if (names[j] === 'Вы') {
@@ -67,10 +69,10 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = getRandomColor();
     }
     // Рисует столбики диаграммы
-    ctx.fillRect(CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[j]) / maxTime, BAR_WIDTH, (barHeight * times[j]) / maxTime);
+    ctx.fillRect(CLOUD_X + LEFT_MARGIN + (TEXT_WIDTH + DISTANCE_BETWEEN_COLUMNS) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (BAR_HEIGHT * times[j]) / maxTime, BAR_WIDTH, (BAR_HEIGHT * times[j]) / maxTime);
 
     // Добавляет статистику в цифрах
     ctx.fillStyle = '#000';
-    ctx.fillText(Math.round(times[j]), CLOUD_X + GAP * 4 + (TEXT_WIDTH + GAP * 5) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[j]) / maxTime - FONT_GAP);
+    ctx.fillText(Math.round(times[j]), CLOUD_X + LEFT_MARGIN + (TEXT_WIDTH + DISTANCE_BETWEEN_COLUMNS) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (BAR_HEIGHT * times[j]) / maxTime - FONT_GAP);
   }
 };
