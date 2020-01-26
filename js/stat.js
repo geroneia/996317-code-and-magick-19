@@ -42,20 +42,7 @@ var getRandomColor = function () {
   return someBlue;
 };
 
-window.renderStatistics = function (ctx, names, times) {
-
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
-
-  // Сообщение о победе разбивается на строки в месте переноса (тут нужна функция, но я не знаю, как правильно ее написать)
-  ctx.fillStyle = '#000';
-  ctx.font = '16px PT Mono';
-  ctx.textBaseline = 'hanging';
-  var lines = MESSAGE.split('\n');
-  for (var i = 0; i < lines.length; i++) {
-    ctx.fillText(lines[i], CLOUD_X + LEFT_MARGIN, CLOUD_Y + TOP_MARGIN + (i * LINE_HEIGHT));
-  }
-
+var renderHistogram = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var j = 0; j < names.length; j++) {
@@ -75,4 +62,22 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillStyle = '#000';
     ctx.fillText(Math.round(times[j]), CLOUD_X + LEFT_MARGIN + (TEXT_WIDTH + DISTANCE_BETWEEN_COLUMNS) * j, CLOUD_Y + CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (BAR_HEIGHT * times[j]) / maxTime - FONT_GAP);
   }
+};
+
+window.renderStatistics = function (ctx, names, times) {
+
+  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
+
+  // Сообщение о победе разбивается на строки в месте переноса (тут нужна функция, но я не знаю, как правильно ее написать)
+  ctx.fillStyle = '#000';
+  ctx.font = '16px PT Mono';
+  ctx.textBaseline = 'hanging';
+  var lines = MESSAGE.split('\n');
+  for (var i = 0; i < lines.length; i++) {
+    ctx.fillText(lines[i], CLOUD_X + LEFT_MARGIN, CLOUD_Y + TOP_MARGIN + (i * LINE_HEIGHT));
+  }
+
+  renderHistogram(ctx, names, times);
+
 };
