@@ -11,6 +11,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COATS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARDS_COUNT = 4;
 
 var getRandomData = function (array) {
   var color = array[Math.floor(Math.random() * array.length)];
@@ -24,29 +25,6 @@ var getWizardName = function () {
   return wizardName;
 };
 
-var wizards = [
-  {
-    name: getWizardName(),
-    coatColor: getRandomData(WIZARD_COATS),
-    eyesColor: getRandomData(WIZARD_EYES)
-  },
-  {
-    name: getWizardName(),
-    coatColor: getRandomData(WIZARD_COATS),
-    eyesColor: getRandomData(WIZARD_EYES)
-  },
-  {
-    name: getWizardName(),
-    coatColor: getRandomData(WIZARD_COATS),
-    eyesColor: getRandomData(WIZARD_EYES)
-  },
-  {
-    name: getWizardName(),
-    coatColor: getRandomData(WIZARD_COATS),
-    eyesColor: getRandomData(WIZARD_EYES)
-  }
-];
-
 var getWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -58,8 +36,13 @@ var getWizard = function (wizard) {
 };
 
 var fragment = document.createDocumentFragment();
-for (var j = 0; j < wizards.length; j++) {
-  fragment.appendChild(getWizard(wizards[j]));
+for (var j = 0; j < WIZARDS_COUNT; j++) {
+  var anyWizard = {
+    name: getWizardName(),
+    coatColor: getRandomData(WIZARD_COATS),
+    eyesColor: getRandomData(WIZARD_EYES)
+  };
+  fragment.appendChild(getWizard(anyWizard));
 }
 similarListElement.appendChild(fragment);
 
