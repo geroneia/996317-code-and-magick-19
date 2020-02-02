@@ -10,6 +10,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COATS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
+var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var WIZARDS_COUNT = 4;
 var MIN_NAME_LENGTH = 2;
 var ESC_KEY = 'Escape';
@@ -17,6 +18,13 @@ var ENTER_KEY = 'Enter';
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = userDialog.querySelector('.setup-close');
 var userNameInput = userDialog.querySelector('.setup-user-name');
+var setupWizard = document.querySelector('.setup-wizard');
+var wizardCoat = setupWizard.querySelector('.wizard-coat');
+var wizardEyes = setupWizard.querySelector('.wizard-eyes');
+var setupFireball = document.querySelector('.setup-fireball-wrap');
+var coatColorInput = document.querySelector('input[name=coat-color]');
+var eyesColorInput = document.querySelector('input[name=eyes-color]');
+var fireballColorInput = setupFireball.querySelector('input[name=fireball-color]');
 
 var getRandomData = function (array) {
   var color = array[Math.floor(Math.random() * array.length)];
@@ -91,19 +99,7 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-// Добавляет валидацию формы
-// userNameInput.addEventListener('invalid', function (evt) {
-//   if (userNameInput.validity.tooShort) {
-//     userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
-//   } else if (userNameInput.validity.tooLong) {
-//     userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
-//   } else if (userNameInput.validity.valueMissing) {
-//     userNameInput.setCustomValidity('Обязательное поле');
-//   } else {
-//     userNameInput.setCustomValidity('');
-//   }
-// });
-
+// Описывает проверку длины имени в форме
 userNameInput.addEventListener('input', function (evt) {
   var target = evt.target;
   if (target.value.length < MIN_NAME_LENGTH) {
@@ -116,3 +112,40 @@ userNameInput.addEventListener('input', function (evt) {
     target.setCustomValidity('');
   }
 });
+
+// Описываает выбор света глаз, плаща и файерболла персонажа игрока
+var getPlayersWizardCoat = function () {
+  var fill = getRandomData(WIZARD_COATS);
+  wizardCoat.style.fill = fill;
+  coatColorInput.value = fill;
+};
+
+var getPlayersWizardEyes = function () {
+  var fill = getRandomData(WIZARD_EYES);
+  wizardEyes.style.fill = fill;
+  eyesColorInput.value = fill;
+};
+
+var getPlayersFireballColor = function () {
+  var fill = getRandomData(FIREBALL_COLORS);
+  setupFireball.style.background = fill;
+  fireballColorInput.value = fill;
+};
+
+wizardCoat.addEventListener('click', function () {
+  getPlayersWizardCoat();
+});
+
+wizardEyes.addEventListener('click', function () {
+  getPlayersWizardEyes();
+});
+
+setupFireball.addEventListener('click', function () {
+  getPlayersFireballColor();
+});
+
+// { files: [],
+//   username: 'Синий Пендальф',
+//   'coat-color': 'rgb(101, 137, 164)',
+//   'eyes-color': 'black',
+//   'fireball-color': '#ee4830' }
