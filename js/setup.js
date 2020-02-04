@@ -114,38 +114,33 @@ userNameInput.addEventListener('input', function (evt) {
 });
 
 // Описываает выбор света глаз, плаща и файерболла персонажа игрока
-var getPlayersWizardCoat = function () {
+var onWizardCoatClick = function () {
   var fill = getRandomData(WIZARD_COATS);
   wizardCoat.style.fill = fill;
   coatColorInput.value = fill;
 };
 
-var getPlayersWizardEyes = function () {
+var onWizardEyesClick = function () {
   var fill = getRandomData(WIZARD_EYES);
   wizardEyes.style.fill = fill;
   eyesColorInput.value = fill;
 };
 
-var getPlayersFireballColor = function () {
+var onFireballClick = function () {
   var fill = getRandomData(FIREBALL_COLORS);
   setupFireball.style.background = fill;
   fireballColorInput.value = fill;
 };
 
 wizardCoat.addEventListener('click', function () {
-  getPlayersWizardCoat();
+  onWizardCoatClick();
 });
 
 wizardEyes.addEventListener('click', function () {
-  getPlayersWizardEyes();
+  onWizardEyesClick();
 });
 
 setupFireball.addEventListener('click', function () {
-  getPlayersFireballColor();
+  onFireballClick();
 });
 
-// { files: [],
-//   username: 'Синий Пендальф',
-//   'coat-color': 'rgb(101, 137, 164)',
-//   'eyes-color': 'black',
-//   'fireball-color': '#ee4830' }
