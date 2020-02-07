@@ -6,7 +6,7 @@
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = userDialog.querySelector('.setup-close');
   var onPopupEscPress = function (evt) {
-    window.util.isEscEvent(evt, closePopup);
+    window.util.onEscClick(evt, closePopup);
   };
 
   var openPopup = function () {
@@ -21,13 +21,12 @@
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
-
   setupOpen.addEventListener('click', function () {
     openPopup();
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    window.util.onEnterClick(evt, openPopup);
   });
 
   setupClose.addEventListener('click', function () {
@@ -35,6 +34,6 @@
   });
 
   setupClose.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    window.util.onEnterClick(evt, closePopup);
   });
 })();

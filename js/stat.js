@@ -34,7 +34,7 @@
     return maxElement;
   };
 
-  // Выбирается случайный синий
+  // Выбирается случайный оттенок
   var getRandomNumber = function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };

@@ -2,7 +2,7 @@
 (function () {
   window.colorize = function (element, array, input) {
     element.addEventListener('click', function () {
-      var color = window.randomize(array);
+      var color = window.util.getRandom(array);
       if (element.tagName.toLowerCase() === 'div') {
         element.style.backgroundColor = color;
       } else {

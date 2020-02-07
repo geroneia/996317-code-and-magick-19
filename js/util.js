@@ -1,22 +1,24 @@
 'use strict';
-window.util = (function () {
+(function () {
   var ESC_KEY = 'Escape';
   var ENTER_KEY = 'Enter';
 
-  return {
-    isEscEvent: function (evt, action) {
+  window.util = {
+    onEscClick: function (evt, cb) {
       if (evt.key === ESC_KEY) {
-        action();
+        cb();
       }
     },
 
-    isEnterEvent: function (evt, action) {
+    onEnterClick: function (evt, cb) {
       if (evt.key === ENTER_KEY) {
-        action();
+        cb();
       }
+    },
+
+    getRandom: function (array) {
+      var data = array[Math.floor(Math.random() * array.length)];
+      return data;
     }
   };
-
 })();
-
-

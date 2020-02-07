@@ -21,7 +21,7 @@
   var fireballColorInput = setupFireball.querySelector('input[name=fireball-color]');
   var getWizardName = function () {
     for (var i = 0; i < WIZARD_NAMES.length; i++) {
-      var wizardName = window.randomize(WIZARD_NAMES) + ' ' + window.randomize(WIZARD_SURNAMES);
+      var wizardName = window.util.getRandom(WIZARD_NAMES) + ' ' + window.util.getRandom(WIZARD_SURNAMES);
     }
     return wizardName;
   };
@@ -38,8 +38,8 @@
   for (var j = 0; j < WIZARDS_COUNT; j++) {
     var anyWizard = {
       name: getWizardName(),
-      coatColor: window.randomize(WIZARD_COATS),
-      eyesColor: window.randomize(WIZARD_EYES)
+      coatColor: window.util.getRandom(WIZARD_COATS),
+      eyesColor: window.util.getRandom(WIZARD_EYES)
     };
     fragment.appendChild(getWizard(anyWizard));
   }
