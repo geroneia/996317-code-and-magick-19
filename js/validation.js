@@ -2,7 +2,7 @@
 (function () {
   var MIN_NAME_LENGTH = 2;
 
-  window.validation = function (element) {
+  window.validateName = function (element) {
     element.addEventListener('input', function (evt) {
       var target = evt.target;
       if (target.value.length < MIN_NAME_LENGTH) {

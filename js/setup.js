@@ -29,7 +29,7 @@
     return wizardReady;
   };
 
-  window.validation(userNameInput);
+  window.validateName(userNameInput);
   window.colorize(wizardCoat, WIZARD_COATS, coatColorInput);
   window.colorize(wizardEyes, WIZARD_EYES, eyesColorInput);
   window.colorize(setupFireball, FIREBALL_COLORS, fireballColorInput);

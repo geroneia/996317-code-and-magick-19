@@ -39,11 +39,11 @@
       document.removeEventListener('mouseup', onMouseUp);
 
       if (dragged) {
-        var onClickPreventDefault = function (clickEvt) {
+        var onDialogHandlerClick = function (clickEvt) {
           clickEvt.preventDefault();
-          dialogHandler.removeEventListener('click', onClickPreventDefault);
+          dialogHandler.removeEventListener('click', onDialogHandlerClick);
         };
-        dialogHandler.addEventListener('click', onClickPreventDefault);
+        dialogHandler.addEventListener('click', onDialogHandlerClick);
       }
     };
     document.addEventListener('mousemove', onMouseMove);

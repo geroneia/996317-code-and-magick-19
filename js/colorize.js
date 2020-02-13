@@ -3,7 +3,7 @@
   window.colorize = function (element, array, input) {
     element.addEventListener('click', function () {
       var color = window.util.getRandom(array);
-      if (element.tagName.toLowerCase() === 'div') {
+      if (element.className.toLowerCase() === 'setup-fireball-wrap') {
         element.style.backgroundColor = color;
       } else {
         element.style.fill = color;
