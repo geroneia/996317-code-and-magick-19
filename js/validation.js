@@ -7,7 +7,7 @@
       var target = evt.target;
       if (target.value.length < MIN_NAME_LENGTH) {
         target.setCustomValidity(
-          'Имя должно состоять минимум из ' +
+            'Имя должно состоять минимум из ' +
           MIN_NAME_LENGTH +
           '-х символов'
         );
