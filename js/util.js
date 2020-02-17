@@ -22,17 +22,6 @@
     },
     getRandomNumber: function (min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
-    getmixedArray: function (array) {
-      var j;
-      var temp;
-      for (var i = array.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        temp = array[j];
-        array[j] = array[i];
-        array[i] = temp;
-      }
-      return array;
     }
   };
 })();

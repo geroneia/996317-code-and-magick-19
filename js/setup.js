@@ -39,13 +39,13 @@
   };
 
   form.addEventListener('submit', function (evt) {
+    window.setup.onErrorCancelLoading();
     window.backend.save(new FormData(form), closeAddedForm, onErrorLoading);
     evt.preventDefault();
   });
 
   var onSuccessLoading = function (wizards) {
     var fragment = document.createDocumentFragment();
-    window.util.getmixedArray(wizards);
     for (var j = 0; j < WIZARDS_COUNT; j++) {
       var anyWizard = {
         name: wizards[j].name,
@@ -61,15 +61,18 @@
 
   var onErrorLoading = function (errorMessage) {
     var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-    node.style.position = 'absolute';
-    node.style.left = 0;
-    node.style.right = 0;
-    node.style.fontSize = '30px';
-
+    node.classList.add('error__message');
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
+  window.setup = {
+    onErrorCancelLoading: function () {
+      var errorMessage = document.querySelector('.error__message');
+      if (errorMessage) {
+        errorMessage.parentNode.removeChild(errorMessage);
+      }
+    }
+  };
   window.backend.load(onSuccessLoading, onErrorLoading);
 })();

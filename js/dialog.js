@@ -23,7 +23,6 @@
     }
   };
 
-
   setupOpen.addEventListener('click', function () {
     window.dialog.openPopup();
   });
@@ -33,6 +32,7 @@
   });
 
   setupClose.addEventListener('click', function () {
+    window.setup.onErrorCancelLoading();
     window.dialog.closePopup();
   });
 
