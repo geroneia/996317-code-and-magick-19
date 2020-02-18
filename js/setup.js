@@ -40,7 +40,7 @@
 
   form.addEventListener('submit', function (evt) {
     window.setup.onErrorCancelLoading();
-    window.backend.save(new FormData(form), closeAddedForm, onErrorLoading);
+    window.backend.save(new FormData(evt.target), closeAddedForm, onErrorLoading);
     evt.preventDefault();
   });
 
@@ -61,14 +61,14 @@
 
   var onErrorLoading = function (errorMessage) {
     var node = document.createElement('div');
-    node.classList.add('error__message');
+    node.classList.add('error-message');
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
   };
 
   window.setup = {
     onErrorCancelLoading: function () {
-      var errorMessage = document.querySelector('.error__message');
+      var errorMessage = document.querySelector('.error-message');
       if (errorMessage) {
         errorMessage.parentNode.removeChild(errorMessage);
       }

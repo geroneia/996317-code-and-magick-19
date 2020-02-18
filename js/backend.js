@@ -5,7 +5,7 @@
   var StatusCode = {
     OK: 200
   };
-  var TIMEOUT_IN_MILLISECONDS = 10000;
+  var TIMEOUT_IN_MILLISECONDS = 10;
   window.backend = {
     load: function (onLoad, onError) {
       var xhr = new XMLHttpRequest();
