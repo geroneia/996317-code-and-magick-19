@@ -927,6 +927,19 @@ input[type=radio]:checked + .review-mark-label
     opacity: .3;
 }
 
+.error-message
+{
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  margin: 0 auto;
+  font-size: 30px;
+  text-align: center;
+  background:linear-gradient(#e21010, #f08307);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
 .overlay-gallery
 {
     text-align: center;
