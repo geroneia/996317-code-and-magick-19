@@ -6,37 +6,36 @@
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = userDialog.querySelector('.setup-close');
 
-
   var onPopupEscPress = function (evt) {
-    window.util.onEscClick(evt, close);
+    window.util.onEscClick(evt, closePopup);
   };
-  var open = function () {
+  var openPopup = function () {
     userDialog.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
     userDialog.style.top = USER_DIALOG_X;
     userDialog.style.left = USER_DIALOG_Y;
   };
 
-  var close = function () {
+  var closePopup = function () {
     userDialog.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
 
   setupOpen.addEventListener('click', function () {
-    open();
+    openPopup();
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
-    window.util.onEnterClick(evt, open);
+    window.util.onEnterClick(evt, openPopup);
   });
 
   setupClose.addEventListener('click', function () {
     window.setup.onErrorCancelLoading();
-    close();
+    closePopup();
   });
 
   setupClose.addEventListener('keydown', function (evt) {
-    window.util.onEnterClick(evt, close);
+    window.util.onEnterClick(evt, closePopup);
   });
 })();
